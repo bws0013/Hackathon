@@ -1,5 +1,6 @@
 package me.williamhester;
 
+import me.williamhester.network.CourseCodes;
 import me.williamhester.network.DeanList;
 import me.williamhester.network.PeopleFinder;
 
@@ -11,6 +12,7 @@ public class Main {
      * @param args not used
      */
     public static void main(String[] args) {
+        CourseCodes.setup();
         DeanList.read();
         PeopleFinder.getPerson();
     }

@@ -20,7 +20,7 @@ public class DeanList {
 
         for (int i = 1; i <= 355; i++) {
 
-            System.out.println("READING " + i + "!");
+            //jSystem.out.println("READING " + i + "!");
             Request request = new Request.Builder()
                     .url("http://cws.auburn.edu/ocm/deanslist/Home/Page?page=" + i)
                     .header("X-Requested-With", "XMLHttpRequest")
@@ -37,8 +37,26 @@ public class DeanList {
                 for (Element row : table) {
                     String s = "";
                     Elements entries = row.select("td");
+                    int idx = 0;
                     for (Element entry : entries) {
-                        s += entry.text() + " ";
+                        switch (idx) {
+                            case 0:
+                            case 1:
+                            case 2:
+                            case 3:
+                            case 8:
+                            case 9:
+                            case 10:
+                            case 11:
+                                s += entry.text() + "\t";
+                                break;
+                            case 5:
+                                s += CourseCodes.getDescription(entry.text()) + " ";
+                                break;
+
+                        }
+                       // s += entry.text() + " ";
+                        idx++;
                     }
                     people.add(s);
                 }
