@@ -80,56 +80,40 @@ var bot = controller.spawn({
     token: process.env.token
 }).startRTM();
 
-
-controller.hears(['hello','hi'],'direct_message,direct_mention,mention',function(bot, message) {
-
-    bot.api.reactions.add({
-        timestamp: message.ts,
-        channel: message.channel,
-        name: 'robot_face',
-    },function(err, res) {
-        if (err) {
-            bot.botkit.log('Failed to add emoji reaction :(',err);
-        }
-    });
-
-
-    controller.storage.users.get(message.user,function(err, user) {
-        if (user && user.name) {
-            bot.reply(message,'Hello ' + user.name + '!!');
-        } else {
-            bot.reply(message,'Hello.');
-        }
-    });
-});
-
-controller.hears(['call me (.*)'],'direct_message,direct_mention,mention',function(bot, message) {
-    var matches = message.text.match(/call me (.*)/i);
+controller.hears(['Tell me about (.*).'],'direct_message,direct_mention,mention',function(bot, message) {
+    var matches = message.text.match(/Tell me about (.*)\./i);
     var name = matches[1];
-    controller.storage.users.get(message.user,function(err, user) {
-        if (!user) {
-            user = {
-                id: message.user,
-            };
-        }
-        user.name = name;
-        controller.storage.users.save(user,function(err, id) {
-            bot.reply(message,'Got it. I will call you ' + user.name + ' from now on.');
-        });
-    });
+    bot.reply(message, 'I will find what I can about ' + name + "...");
 });
 
-controller.hears(['what is my name','who am i'],'direct_message,direct_mention,mention',function(bot, message) {
-
-    controller.storage.users.get(message.user,function(err, user) {
-        if (user && user.name) {
-            bot.reply(message,'Your name is ' + user.name);
-        } else {
-            bot.reply(message,'I don\'t know yet!');
-        }
-    });
+controller.hears(['Who is in (.*)?'],'direct_message,direct_mention,mention',function(bot, message) {
+    var matches = message.text.match(/Who is in (.*)\?/i);
+    var major = matches[1];
+    bot.reply(message, 'Finding people in ' + major + "...");
 });
 
+controller.hears(['Who is from (.*)?'],'direct_message,direct_mention,mention',function(bot, message) {
+    var matches = message.text.match(/Who is from (.*)\?/i);
+    var place = matches[1];
+    bot.reply(message, 'Finding people from ' + place + "...");
+});
+
+controller.hears(['help'], 'direct_message,direct_mention,mention',function(bot, message) {
+  bot.reply(message, 'I can do lots of things! Try one of the following:');
+  bot.reply(message, 'Who is in [MAJOR]?');
+  bot.reply(message, 'Who is from [COUNTY]?');
+  bot.reply(message, 'Whose email is [EMAIL]?');
+  bot.reply(message, 'Tell me about [PERSON].');
+});
+
+controller.hears(['Whose email is (.*)?'],'direct_message,direct_mention,mention',function(bot, message) {
+    var matches = message.text.match(/Whose email is (.*)\?/i);
+    var mailTo = matches[1];
+    var start = mailTo.indexOf(":") + 1;
+    var end = mailTo.indexOf("|");
+    var email = mailTo.substring(start, end);
+    bot.reply(message, 'Searching for ' + email + "...");
+});
 
 controller.hears(['shutdown'],'direct_message,direct_mention,mention',function(bot, message) {
 
@@ -158,7 +142,7 @@ controller.hears(['shutdown'],'direct_message,direct_mention,mention',function(b
 });
 
 
-controller.hears(['uptime','identify yourself','who are you','what is your name'],'direct_message,direct_mention,mention',function(bot, message) {
+controller.hears(['uptime'],'direct_message,direct_mention,mention',function(bot, message) {
 
     var hostname = os.hostname();
     var uptime = formatUptime(process.uptime());
