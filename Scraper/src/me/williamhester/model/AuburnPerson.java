@@ -50,4 +50,13 @@ public class AuburnPerson {
     public void setEmail(String email) {
         this.email = email;
     }
+
+    @Override
+    public String toString() {
+        return "Role: " + role + "\n" +
+                "Curriculum: " + curriculum + "\n" +
+                "MailingAddress: " + mailingAddress + "\n" +
+                "Phone: " + phone + "\n" +
+                "Email: " + email + "\n";
+    }
 }
