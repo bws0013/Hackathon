@@ -13,9 +13,8 @@ import java.util.StringTokenizer;
  * Created by Mac on 2/13/16.
  */
 public class TwitterApi {
-    private static AccessToken token = new AccessToken("", "");
 
-    public static List<String> getUser(String name) {
+    public static void getUser(String name) {
         ArrayList<String> userList = new ArrayList<>();
         try {
             Twitter twitter = TwitterFactory.getSingleton();
@@ -32,17 +31,18 @@ public class TwitterApi {
                     userList.add("");
                 }
             }
-            return userList;
         } catch (TwitterException e) {
             e.printStackTrace();
         }
         if (userList.size() == 0) {
             userList.add("Sorry, I couldn't find any users with that name.");
         }
-        return userList;
+        for (String s : userList) {
+            System.out.println(s);
+        }
     }
 
-    public static List<String> findBirthday(String accountName) {
+    public static void findBirthday(String accountName) {
         ArrayList<String> birthday = new ArrayList<>();
         try {
             boolean found = false;
@@ -99,14 +99,15 @@ public class TwitterApi {
             } else {
                 birthday.add("I'm sorry, but " + accountName + " doesn't exist.");
             }
-            return birthday;
         } catch (TwitterException e) {
             e.printStackTrace();
         }
-        return birthday;
+        for (String s : birthday) {
+            System.out.println(s);
+        }
     }
 
-    public static List<String> getRecentLocation(String accountName) {
+    public static void getRecentLocation(String accountName) {
         ArrayList<String> location = new ArrayList<>();
         try {
             Twitter twitter = TwitterFactory.getSingleton();
@@ -145,7 +146,9 @@ public class TwitterApi {
             }
             e.printStackTrace();
         }
-        return location;
+        for (String s : location) {
+            System.out.println(s);
+        }
     }
 
     public static void getLimit() {
@@ -171,7 +174,7 @@ public class TwitterApi {
 
     }
 
-    public static List<String> getTrending() {
+    public static void getTrending() {
         ArrayList<String> trending = new ArrayList<>();
         try {
             Twitter twitter = TwitterFactory.getSingleton();
@@ -191,7 +194,9 @@ public class TwitterApi {
         } catch (TwitterException e) {
 
         }
-        return trending;
+        for (String s : trending) {
+            System.out.println(s);
+        }
     }
 
     /*public static List<String> getTrendingLocation(String city) {
@@ -229,7 +234,7 @@ public class TwitterApi {
         return trending;
     }*/
 
-    public static List<String> getTweets(String hashtag) {
+    public static void getTweets(String hashtag) {
         ArrayList<String> tweets = new ArrayList<>();
         try {
             Twitter twitter = TwitterFactory.getSingleton();
@@ -250,6 +255,8 @@ public class TwitterApi {
         if (tweets.size() == 0) {
             tweets.add("Sorry, but I couldn't find any tweets for #" + hashtag + ".");
         }
-        return tweets;
+        for (String s : tweets) {
+            System.out.println(s);
+        }
     }
 }
