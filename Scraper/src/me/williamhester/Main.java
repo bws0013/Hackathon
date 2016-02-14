@@ -1,7 +1,6 @@
 package me.williamhester;
 
 import me.williamhester.model.AuburnPerson;
-import me.williamhester.model.Organizations;
 import me.williamhester.network.CourseCodes;
 import me.williamhester.network.TwitterApi;
 
@@ -11,12 +10,11 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
 
 public class Main {
 
-    private static final String ZIPCODE = "zipcode";
+    private static final String ZIPCODE = "zip";
     private static final String COUNTY = "county";
     private static final String CITY = "city";
     private static final String STATE = "state";
@@ -61,7 +59,6 @@ public class Main {
             return null;
         }
 
-        Connection conn;
         String url = "jdbc:mysql://127.0.0.1:3306/hackathon";
         String user = "root";
         try {
@@ -76,8 +73,9 @@ public class Main {
         String type;
         if (place.matches("[0-9]*")) {
             type = ZIPCODE;
-        } else if (place.toLowerCase().endsWith("county")) {
+        } else if (place.toLowerCase().endsWith(" county")) {
             type = COUNTY;
+            place = place.substring(0, place.toLowerCase().indexOf(" county"));
         } else if (place.length() == 2) {
             type = STATE;
         } else {
@@ -101,6 +99,9 @@ public class Main {
                 }
             } else {
                 System.out.println("Sorry, I didn't find any matches.");
+            }
+            if (type.equals(COUNTY)) {
+                place += " County";
             }
             if (names.size() > 0) {
                 if (names.size() > 1) {

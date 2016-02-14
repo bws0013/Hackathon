@@ -80,7 +80,8 @@ var bot = controller.spawn({
     token: process.env.token
 }).startRTM();
 
-controller.hears(['What\'s trending?'],'direct_message,direct_mention,mention',function(bot, message) {
+// controller.hears(['What\'s trending?'],'direct_message,direct_mention,mention',function(bot, message) {
+controller.hears(['What is trending'],'direct_message,direct_mention,mention',function(bot, message) {
     bot.reply(message, 'Here is what is trending ...');
     var exec = require('child_process').exec;
     var child = exec('java -jar Scraper.jar -trends', function(error, stdout, stderr) {
@@ -113,17 +114,22 @@ controller.hears(['Find (.*) on Twitter.'],'direct_message,direct_mention,mentio
     }
 });
 
-controller.hears(['When is (.*)\'s birthday?'],'direct_message,direct_mention,mention',function(bot, message) {
-    var matches = message.text.match(/When is (.*)\'s birthday\?/i);
+controller.hears(['Hello!'], 'direct_message,direct_mention,mention', function(bot, message) {
+    bot.reply(message, 'Hello!');
+});
+
+controller.hears(['When did (.*) celebrate their birthday?'],'direct_message,direct_mention,mention',function(bot, message) {
+    var matches = message.text.match(/When did (.*) celebrate their birthday\?/i);
     if (matches === null) {
       bot.reply(message, 'Sorry, I don\'t understand you.');
     } else {
       var name = matches[1];
       bot.reply(message, 'I will try to find ' + name + "\'s birthday...");
       var exec = require('child_process').exec;
-      var child = exec('java -jar Scraper.jar -bday ' + '"' + name + '"', function(error, stdout, stderr) {
+      var child = exec('java -jar Scraper.jar -bday ' + '"' + name.substring(1) + '"', function(error, stdout, stderr) {
         //bot.reply(message, 'Done!');
         bot.reply(message, stdout);
+        bot.reply(message, stderr);
         if (error !== null) {
           console.log('exec error: ' + error);
           bot.reply(message, 'ERROR: ' + error);
@@ -139,16 +145,20 @@ controller.hears(['Tell me about (.*).'],'direct_message,direct_mention,mention'
       bot.reply(message, 'Sorry, I don\'t understand you.');
     } else {
       var name = matches[1];
+
+
+
       bot.reply(message, 'I will find what I can about ' + name + "...");
       var exec = require('child_process').exec;
       var child = exec('java -jar Scraper.jar -info ' + '"' + name + '"', function(error, stdout, stderr) {
+    //    var child = exec('pwd', function(error, stdout, stderr) {
         //bot.reply(message, 'Done!');
         bot.reply(message, stdout);
         if (error !== null) {
           console.log('exec error: ' + error);
           bot.reply(message, 'ERROR: ' + error);
         }
-      });
+    });
     }
 });
 
@@ -174,23 +184,24 @@ controller.hears(['Who is in (.*) from (.*)?'],'direct_message,direct_mention,me
 
 
 controller.hears(['help'], 'direct_message,direct_mention,mention',function(bot, message) {
-  bot.reply(message, 'I can do lots of things! Try one of the following:');
-  bot.reply(message, 'Who is in [MAJOR] from [COUNTY/STATE/ZIP/CITY]?');
-  bot.reply(message, 'Tell me about [PERSON].');
-  bot.reply(message, 'What\'s trending?');
-  bot.reply(message, 'Find [PERSON] on Twitter.');
-  bot.reply(message, 'When is [PERSON]\'s birthday?');
-  bot.reply(message, 'What\'s up with [HASHTAG]?');
-  bot.reply(message, 'Where\'s [TWITTERHANDLE]?');
+      bot.reply(message, "I can do lots of things! Try one of the following:\n" +
+              "Who is in [MAJOR] from [COUNTY/STATE/ZIP/CITY]?\n" +
+              "Tell me about [PERSON].\n" +
+              "What is trending?\n" +
+              "Find [PERSON] on Twitter.\n" +
+              "When did [PERSON] celebrate their birthday?\n" +
+              "What is up with [HASHTAG]?\n" +
+              "Where is [TWITTERHANDLE]?");
 });
 
-controller.hears(['Where\'s (.*)?'],'direct_message,direct_mention,mention',function(bot, message) {
-    var matches = message.text.match(/Where\'s (.*)\?/i);
+controller.hears(["Where is (.*)?"],'direct_message,direct_mention,mention',function(bot, message) {
+    var matches = message.text.match(/Where is (.*)\?/i);
     if (matches === null) {
       bot.reply(message, 'Sorry, I don\'t understand you.');
     } else {
       var tag = matches[1];
-      if (tag.charAt(0) === '@') {
+      //bot.reply(message, tag.substring(0, 1));
+      if (tag.substring(0, 1) === '@') {
         bot.reply(message, 'Searching Twitter for *' + tag + '*...');
         var handle = tag.substring(1);
         var exec = require('child_process').exec;
@@ -209,8 +220,8 @@ controller.hears(['Where\'s (.*)?'],'direct_message,direct_mention,mention',func
 
 });
 
-controller.hears(['What\'s up with (.*)?'],'direct_message,direct_mention,mention',function(bot, message) {
-    var matches = message.text.match(/What\'s up with (.*)\?/i);
+controller.hears(['What is up with (.*)?'],'direct_message,direct_mention,mention',function(bot, message) {
+    var matches = message.text.match(/What is up with (.*)\?/i);
     if (matches === null) {
       bot.reply(message, 'Sorry, I don\'t understand you.');
     } else {
@@ -273,7 +284,6 @@ controller.hears(['uptime'],'direct_message,direct_mention,mention',function(bot
 
 controller.hears([''],'direct_message,direct_mention,mention',function(bot, message) {
     bot.reply(message,'I don\'t understand that! For a list of valid queries, type "help."');
-
 });
 
 

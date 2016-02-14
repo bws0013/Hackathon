@@ -63,4 +63,5 @@ target/
 *.txt
 *.sql
 /Scraper/src/META-INF/
+/bot/Scraper.jar
 

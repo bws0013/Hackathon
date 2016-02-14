@@ -20,7 +20,7 @@ public class TwitterApi {
             Twitter twitter = TwitterFactory.getSingleton();
             User owner = twitter.verifyCredentials();
 
-            ResponseList<User> users = twitter.searchUsers("Johnny Appleseed", 1);
+            ResponseList<User> users = twitter.searchUsers(name, 1);
             if (users.size() > 0) {
                 userList.add("Here are a few profiles matching \""  + name + "\".");
                 for (User u : users) {
@@ -132,7 +132,7 @@ public class TwitterApi {
                         }
                     }
                     if (location.size() < 2) {
-                        location.add("I'm sorry, I could'nt find " + accountName + "'s most recent location.");
+                        location.add("I'm sorry, I couldn't find " + accountName + "'s most recent location.");
                     }
                 } else {
                     location.add("I'm sorry, but " + user.getName() + "'s account is protected.");
@@ -142,7 +142,7 @@ public class TwitterApi {
             }
         } catch (TwitterException e) {
             if (location.size() == 0) {
-                location.add("I'm sorry, I could'nt find " + accountName + "'s most recent location.");
+                location.add("I'm sorry, I couldn't find " + accountName + "'s most recent location.");
             }
             e.printStackTrace();
         }
