@@ -149,7 +149,6 @@ controller.hears(['help'], 'direct_message,direct_mention,mention',function(bot,
   bot.reply(message, 'I can do lots of things! Try one of the following:');
   bot.reply(message, 'Who is in [MAJOR]?');
   bot.reply(message, 'Who is from [COUNTY/STATE/ZIP CODE]?');
-  bot.reply(message, 'Whose email is [EMAIL]?');
   bot.reply(message, 'Tell me about [PERSON].');
   bot.reply(message, 'What\'s trending?');
   bot.reply(message, 'Find [PERSON] on Twitter.');
@@ -169,24 +168,6 @@ controller.hears(['Where\'s (.*)?'],'direct_message,direct_mention,mention',func
         var handle = tag.substring(1);
       } else {
         bot.reply(message, 'Sorry, "' + tag + '" is not a valid hashtag.');
-      }
-    }
-
-});
-
-controller.hears(['Whose email is (.*)?'],'direct_message,direct_mention,mention',function(bot, message) {
-    var matches = message.text.match(/Whose email is (.*)\?/i);
-    if (matches === null) {
-      bot.reply(message, 'Sorry, I don\'t understand you.');
-    } else {
-      var mailTo = matches[1];
-      var start = mailTo.indexOf(":") + 1;
-      var end = mailTo.indexOf("|");
-      if (start < 0 || end < 0) {
-        bot.reply(message, 'Sorry, ' + mailTo + ' isn\'t a valid email address.');
-      } else {
-        var email = mailTo.substring(start, end);
-        bot.reply(message, 'Searching for ' + email + "...");
       }
     }
 
