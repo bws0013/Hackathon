@@ -80,54 +80,117 @@ var bot = controller.spawn({
     token: process.env.token
 }).startRTM();
 
-
-controller.hears(['hello','hi'],'direct_message,direct_mention,mention',function(bot, message) {
-
-    bot.api.reactions.add({
-        timestamp: message.ts,
-        channel: message.channel,
-        name: 'robot_face',
-    },function(err, res) {
-        if (err) {
-            bot.botkit.log('Failed to add emoji reaction :(',err);
-        }
-    });
-
-
-    controller.storage.users.get(message.user,function(err, user) {
-        if (user && user.name) {
-            bot.reply(message,'Hello ' + user.name + '!!');
-        } else {
-            bot.reply(message,'Hello.');
-        }
-    });
+controller.hears(['What\'s trending in (.*)?'],'direct_message,direct_mention,mention',function(bot, message) {
+    var matches = message.text.match(/What\'s trending in (.*)\?/i);
+    if (matches === null) {
+      bot.reply(message, 'Sorry, I don\'t understand you.');
+    } else {
+      var place = matches[1];
+      bot.reply(message, 'Here is what is trending in ' + place + "...");
+    }
 });
 
-controller.hears(['call me (.*)'],'direct_message,direct_mention,mention',function(bot, message) {
-    var matches = message.text.match(/call me (.*)/i);
-    var name = matches[1];
-    controller.storage.users.get(message.user,function(err, user) {
-        if (!user) {
-            user = {
-                id: message.user,
-            };
-        }
-        user.name = name;
-        controller.storage.users.save(user,function(err, id) {
-            bot.reply(message,'Got it. I will call you ' + user.name + ' from now on.');
-        });
-    });
+
+controller.hears(['What\'s trending?'],'direct_message,direct_mention,mention',function(bot, message) {
+    bot.reply(message, 'Here is what is trending ...');
 });
 
-controller.hears(['what is my name','who am i'],'direct_message,direct_mention,mention',function(bot, message) {
 
-    controller.storage.users.get(message.user,function(err, user) {
-        if (user && user.name) {
-            bot.reply(message,'Your name is ' + user.name);
-        } else {
-            bot.reply(message,'I don\'t know yet!');
-        }
-    });
+controller.hears(['Find (.*) on Twitter.'],'direct_message,direct_mention,mention',function(bot, message) {
+    var matches = message.text.match(/Find (.*) on Twitter\./i);
+    if (matches === null) {
+      bot.reply(message, 'Sorry, I don\'t understand you.');
+    } else {
+      var name = matches[1];
+      bot.reply(message, 'Looking up ' + name + " on Twitter...");
+    }
+});
+
+controller.hears(['When is (.*)\'s birthday?'],'direct_message,direct_mention,mention',function(bot, message) {
+    var matches = message.text.match(/When is (.*)\'s birthday\?/i);
+    if (matches === null) {
+      bot.reply(message, 'Sorry, I don\'t understand you.');
+    } else {
+      var name = matches[1];
+      bot.reply(message, 'I will try to find ' + name + "\'s birthday...");
+    }
+});
+
+
+controller.hears(['Tell me about (.*).'],'direct_message,direct_mention,mention',function(bot, message) {
+    var matches = message.text.match(/Tell me about (.*)\./i);
+    if (matches === null) {
+      bot.reply(message, 'Sorry, I don\'t understand you.');
+    } else {
+      var name = matches[1];
+      bot.reply(message, 'I will find what I can about ' + name + "...");
+    }
+});
+
+controller.hears(['Who is in (.*)?'],'direct_message,direct_mention,mention',function(bot, message) {
+    var matches = message.text.match(/Who is in (.*)\?/i);
+    if (matches === null) {
+      bot.reply(message, 'Sorry, I don\'t understand you.');
+    } else {
+      var major = matches[1];
+      bot.reply(message, 'Finding people in ' + major + "...");
+    }
+});
+
+controller.hears(['Who is from (.*)?'],'direct_message,direct_mention,mention',function(bot, message) {
+    var matches = message.text.match(/Who is from (.*)\?/i);
+    if (matches === null) {
+      bot.reply(message, 'Sorry, I don\'t understand you.');
+    } else {
+      var place = matches[1];
+      bot.reply(message, 'Finding people from ' + place + "...");
+    }
+});
+
+controller.hears(['help'], 'direct_message,direct_mention,mention',function(bot, message) {
+  bot.reply(message, 'I can do lots of things! Try one of the following:');
+  bot.reply(message, 'Who is in [MAJOR]?');
+  bot.reply(message, 'Who is from [COUNTY/STATE/ZIP CODE]?');
+  bot.reply(message, 'Whose email is [EMAIL]?');
+  bot.reply(message, 'Tell me about [PERSON].');
+  bot.reply(message, 'What\'s trending?');
+  bot.reply(message, 'What\'s trending in [PLACE]');
+  bot.reply(message, 'Find [PERSON] on Twitter.');
+  bot.reply(message, 'When is [PERSON]\'s birthday?');
+  bot.reply(message, 'What\'s up with [HASHTAG]?');
+});
+
+controller.hears(['Whose email is (.*)?'],'direct_message,direct_mention,mention',function(bot, message) {
+    var matches = message.text.match(/Whose email is (.*)\?/i);
+    if (matches === null) {
+      bot.reply(message, 'Sorry, I don\'t understand you.');
+    } else {
+      var mailTo = matches[1];
+      var start = mailTo.indexOf(":") + 1;
+      var end = mailTo.indexOf("|");
+      if (start < 0 || end < 0) {
+        bot.reply(message, 'Sorry, ' + mailTo + ' isn\'t a valid email address.');
+      } else {
+        var email = mailTo.substring(start, end);
+        bot.reply(message, 'Searching for ' + email + "...");
+      }
+    }
+
+});
+
+controller.hears(['What\'s up with (.*)?'],'direct_message,direct_mention,mention',function(bot, message) {
+    var matches = message.text.match(/What\'s up with (.*)\?/i);
+    if (matches === null) {
+      bot.reply(message, 'Sorry, I don\'t understand you.');
+    } else {
+      var tag = matches[1];
+      if (tag.charAt(0) === '#') {
+        bot.reply(message, 'Searching for the *' + tag + '* hashtag on Twitter...');
+      } else {
+        bot.reply(message, 'Sorry, "' + tag + '" is not a valid hashtag.');
+      }
+    }
+
 });
 
 
@@ -158,7 +221,7 @@ controller.hears(['shutdown'],'direct_message,direct_mention,mention',function(b
 });
 
 
-controller.hears(['uptime','identify yourself','who are you','what is your name'],'direct_message,direct_mention,mention',function(bot, message) {
+controller.hears(['uptime'],'direct_message,direct_mention,mention',function(bot, message) {
 
     var hostname = os.hostname();
     var uptime = formatUptime(process.uptime());
@@ -166,6 +229,12 @@ controller.hears(['uptime','identify yourself','who are you','what is your name'
     bot.reply(message,':robot_face: I am a bot named <@' + bot.identity.name + '>. I have been running for ' + uptime + ' on ' + hostname + '.');
 
 });
+
+controller.hears([''],'direct_message,direct_mention,mention',function(bot, message) {
+    bot.reply(message,'I don\'t understand that! For a list of valid queries, type "help."');
+
+});
+
 
 function formatUptime(uptime) {
     var unit = 'second';

@@ -1,7 +1,12 @@
 package me.williamhester;
 
+import me.williamhester.network.CourseCodes;
+import me.williamhester.network.DeanList;
 import me.williamhester.network.TwitterApi;
-import twitter4j.*;
+
+import twitter4j.Twitter;
+import twitter4j.TwitterException;
+import twitter4j.TwitterFactory;
 import twitter4j.auth.AccessToken;
 import twitter4j.auth.RequestToken;
 
@@ -11,19 +16,8 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Main {
 
-    /**
-     * Our worker loop for the scraper. Any API requests should be funneled through here.
-     *
-     * @param args not used
-     */
-    public static void main(String args[]) throws Exception{
-        TwitterApi.setAccount();
-        TwitterApi.getUser("John Harrison");
-        //TwitterApi.getLimit();
-        twitterTest6();
-    }
+public class Main {
 
     private static void twitterTest1() throws IOException, TwitterException {
         // The factory instance is re-useable and thread safe.
@@ -62,10 +56,6 @@ public class Main {
         }
     }
 
-    private static void twitterTest3() {
-        TwitterApi.postTweet("Posting from Auburn's Equifax Hackathon!");
-    }
-
     private static void twitterTest4() throws IOException {
         BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
         System.out.println("Please enter the name of the person's birthday below:");
@@ -87,16 +77,6 @@ public class Main {
 
     }
 
-    private static void twitterTest6() throws IOException {
-
-        //ArrayList<String> location = new ArrayList<>(TwitterApi.getTrending());
-        ArrayList<String> location = new ArrayList<>(TwitterApi.getTrendingLocation("Auburn, AL"));
-        for (String s : location) {
-            System.out.println(s);
-        }
-
-    }
-
     private static void twitterTest7() throws IOException {
         BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
         System.out.println("Put in the hashtag below:");
@@ -108,8 +88,14 @@ public class Main {
 
     }
 
-    private static void storeAccessToken(long useId, AccessToken accessToken){
+    private static void storeAccessToken(long useId, AccessToken accessToken) {
         //store accessToken.getToken()
         //store accessToken.getTokenSecret()
+    }
+
+    public static void main(String[] args) {
+        CourseCodes.setup();
+        DeanList.read();
+        //PeopleFinder.getPerson();
     }
 }
