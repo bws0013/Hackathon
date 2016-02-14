@@ -1,5 +1,6 @@
 package me.williamhester.network;
 
+import me.williamhester.model.TwitterAuthentication;
 import twitter4j.*;
 import twitter4j.auth.AccessToken;
 
@@ -164,8 +165,9 @@ public class TwitterApi {
 
     public static void setAccount() {
         Twitter twitter = TwitterFactory.getSingleton();
-        twitter.setOAuthConsumer("", "");
-        twitter.setOAuthAccessToken(token);
+        TwitterAuthentication ta = TwitterAuthentication.getAuthentication();
+        twitter.setOAuthConsumer(ta.getConsumerKey(), ta.getConsumerSecret());
+        twitter.setOAuthAccessToken(new AccessToken(ta.getAccessToken(), ta.getAccessTokenSecret()));
 
     }
 

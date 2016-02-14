@@ -1,7 +1,7 @@
 package me.williamhester.network;
 
 import me.williamhester.model.AuburnPerson;
-import okhttp3.*;
+import okhttp3.Request;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
