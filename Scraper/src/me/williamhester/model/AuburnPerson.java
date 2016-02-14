@@ -26,7 +26,7 @@ public class AuburnPerson {
     private String state;
     private String zipCode;
     private String county;
-
+    // Special Fields
     private String id;
     private String majorDesc;
 
@@ -52,16 +52,29 @@ public class AuburnPerson {
         majorDesc = CourseCodes.getDescription(major);
     }
 
-    public String makeId(String firstName, String lastName) {
+    public static String makeId(String firstName, String lastName) {
         String[] fName = firstName.split(" ");
         String[] lName = lastName.split(" ");
-        return (fName.length > 0 ? fName[0] : "NONE") + "_" + (lName.length > 0 ? lName[0] : "NONE");
+        return (fName.length > 0 ? pad(fName[0]) : "ZZZZZZ") + "_" + (lName.length > 0 ? pad(lName[lName.length - 1]) : "ZZZZZZ");
+    }
+
+    public static String pad(String s) {
+        String out = s.toUpperCase().substring(0, Math.min(s.length(), 6));
+        for (int i = 0; i < 6 - s.length(); i++) {
+            out += "Z";
+        }
+        return out;
     }
 
     public String getSummary() {
         String out = "NAME: " + firstName + " " + lastName + "\tMAJOR: " + majorDesc + "\tHOMETOWN: " + city + ", "
                 + state + " (" + zipCode + ")";
         return out;
+    }
+
+    public String printDBInfo() {
+        return id + "|" + lastName + "|" + firstName + "|" + middleName + "|" + suffix + "|" + degree + "|" + major
+                + "|" + level + "|" + college + "|" + city + "|" + state + "|" + zipCode + "|" + county;
     }
 
     public String getRole() {

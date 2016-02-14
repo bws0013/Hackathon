@@ -93,6 +93,15 @@ controller.hears(['What\'s trending in (.*)?'],'direct_message,direct_mention,me
 
 controller.hears(['What\'s trending?'],'direct_message,direct_mention,mention',function(bot, message) {
     bot.reply(message, 'Here is what is trending ...');
+    var exec = require('child_process').exec;
+    var child = exec('dir', function(error, stdout, stderr) {
+      bot.reply(message, 'Done!');
+      bot.reply(message, stdout);
+      if (error !== null) {
+        console.log('exec error: ' + error);
+        bot.reply(message, 'ERROR: ' + error);
+      }
+    });
 });
 
 
@@ -154,7 +163,7 @@ controller.hears(['help'], 'direct_message,direct_mention,mention',function(bot,
   bot.reply(message, 'Whose email is [EMAIL]?');
   bot.reply(message, 'Tell me about [PERSON].');
   bot.reply(message, 'What\'s trending?');
-  bot.reply(message, 'What\'s trending in [PLACE]');
+  bot.reply(message, 'What\'s trending in [PLACE]?');
   bot.reply(message, 'Find [PERSON] on Twitter.');
   bot.reply(message, 'When is [PERSON]\'s birthday?');
   bot.reply(message, 'What\'s up with [HASHTAG]?');

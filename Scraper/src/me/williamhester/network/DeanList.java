@@ -8,6 +8,7 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 
 /**
  * Created by Mitch on 2/13/2016.
@@ -17,10 +18,11 @@ public class DeanList {
     public static void read() {
 
         ArrayList<AuburnPerson> people = new ArrayList<>();
+        HashSet<String> idSet = new HashSet<>();
 
         int NUM_PAGES = 355;
 
-        for (int i = 1; i <= 5; i++) {
+        for (int i = 1; i <= 1; i++) {
 
             //jSystem.out.println("READING " + i + "!");
             Request request = new Request.Builder()
@@ -44,11 +46,15 @@ public class DeanList {
                         rowData[idx] = entry.text();
                         idx++;
                     }
-                    people.add(new AuburnPerson(rowData));
+                    AuburnPerson ap = new AuburnPerson(rowData);
+                    if (!idSet.contains(ap.getId())) {
+                        idSet.add(ap.getId());
+                        people.add(new AuburnPerson(rowData));
+                    }
                 }
 
                 for (AuburnPerson p : people) {
-                    System.out.println(p.getSummary());
+                    System.out.println(p.printDBInfo());
                 }
             } catch (Exception e) {
                 e.printStackTrace();
