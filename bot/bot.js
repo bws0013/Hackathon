@@ -80,17 +80,6 @@ var bot = controller.spawn({
     token: process.env.token
 }).startRTM();
 
-controller.hears(['What\'s trending in (.*)?'],'direct_message,direct_mention,mention',function(bot, message) {
-    var matches = message.text.match(/What\'s trending in (.*)\?/i);
-    if (matches === null) {
-      bot.reply(message, 'Sorry, I don\'t understand you.');
-    } else {
-      var place = matches[1];
-      bot.reply(message, 'Here is what is trending in ' + place + "...");
-    }
-});
-
-
 controller.hears(['What\'s trending?'],'direct_message,direct_mention,mention',function(bot, message) {
     bot.reply(message, 'Here is what is trending ...');
     var exec = require('child_process').exec;
@@ -163,7 +152,6 @@ controller.hears(['help'], 'direct_message,direct_mention,mention',function(bot,
   bot.reply(message, 'Whose email is [EMAIL]?');
   bot.reply(message, 'Tell me about [PERSON].');
   bot.reply(message, 'What\'s trending?');
-  bot.reply(message, 'What\'s trending in [PLACE]?');
   bot.reply(message, 'Find [PERSON] on Twitter.');
   bot.reply(message, 'When is [PERSON]\'s birthday?');
   bot.reply(message, 'What\'s up with [HASHTAG]?');
