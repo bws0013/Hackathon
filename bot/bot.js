@@ -83,8 +83,8 @@ var bot = controller.spawn({
 controller.hears(['What\'s trending?'],'direct_message,direct_mention,mention',function(bot, message) {
     bot.reply(message, 'Here is what is trending ...');
     var exec = require('child_process').exec;
-    var child = exec('dir', function(error, stdout, stderr) {
-      bot.reply(message, 'Done!');
+    var child = exec('java -jar Scraper.jar -trends', function(error, stdout, stderr) {
+      //bot.reply(message, 'Done!');
       bot.reply(message, stdout);
       if (error !== null) {
         console.log('exec error: ' + error);
@@ -101,6 +101,15 @@ controller.hears(['Find (.*) on Twitter.'],'direct_message,direct_mention,mentio
     } else {
       var name = matches[1];
       bot.reply(message, 'Looking up ' + name + " on Twitter...");
+      var exec = require('child_process').exec;
+      var child = exec('java -jar Scraper.jar -find ' + '"' + name +'"', function(error, stdout, stderr) {
+        //bot.reply(message, 'Done!');
+        bot.reply(message, stdout);
+        if (error !== null) {
+          console.log('exec error: ' + error);
+          bot.reply(message, 'ERROR: ' + error);
+        }
+      });
     }
 });
 
@@ -111,6 +120,15 @@ controller.hears(['When is (.*)\'s birthday?'],'direct_message,direct_mention,me
     } else {
       var name = matches[1];
       bot.reply(message, 'I will try to find ' + name + "\'s birthday...");
+      var exec = require('child_process').exec;
+      var child = exec('java -jar Scraper.jar -bday ' + '"' + name + '"', function(error, stdout, stderr) {
+        //bot.reply(message, 'Done!');
+        bot.reply(message, stdout);
+        if (error !== null) {
+          console.log('exec error: ' + error);
+          bot.reply(message, 'ERROR: ' + error);
+        }
+      });
     }
 });
 
@@ -122,33 +140,42 @@ controller.hears(['Tell me about (.*).'],'direct_message,direct_mention,mention'
     } else {
       var name = matches[1];
       bot.reply(message, 'I will find what I can about ' + name + "...");
+      var exec = require('child_process').exec;
+      var child = exec('java -jar Scraper.jar -info ' + '"' + name + '"', function(error, stdout, stderr) {
+        //bot.reply(message, 'Done!');
+        bot.reply(message, stdout);
+        if (error !== null) {
+          console.log('exec error: ' + error);
+          bot.reply(message, 'ERROR: ' + error);
+        }
+      });
     }
 });
 
-controller.hears(['Who is in (.*)?'],'direct_message,direct_mention,mention',function(bot, message) {
-    var matches = message.text.match(/Who is in (.*)\?/i);
+controller.hears(['Who is in (.*) from (.*)?'],'direct_message,direct_mention,mention',function(bot, message) {
+    var matches = message.text.match(/Who is in (.*) from (.*)\?/i);
     if (matches === null) {
       bot.reply(message, 'Sorry, I don\'t understand you.');
     } else {
       var major = matches[1];
-      bot.reply(message, 'Finding people in ' + major + "...");
+      var place = matches[2];
+      bot.reply(message, 'Finding people in ' + major + ' from ' + place + "...");
+      var exec = require('child_process').exec;
+      var child = exec('java -jar Scraper.jar -mjpl ' + '"' + major + '" ' + '"' + place +'"', function(error, stdout, stderr) {
+        //bot.reply(message, 'Done!');
+        bot.reply(message, stdout);
+        if (error !== null) {
+          console.log('exec error: ' + error);
+          bot.reply(message, 'ERROR: ' + error);
+        }
+      });
     }
 });
 
-controller.hears(['Who is from (.*)?'],'direct_message,direct_mention,mention',function(bot, message) {
-    var matches = message.text.match(/Who is from (.*)\?/i);
-    if (matches === null) {
-      bot.reply(message, 'Sorry, I don\'t understand you.');
-    } else {
-      var place = matches[1];
-      bot.reply(message, 'Finding people from ' + place + "...");
-    }
-});
 
 controller.hears(['help'], 'direct_message,direct_mention,mention',function(bot, message) {
   bot.reply(message, 'I can do lots of things! Try one of the following:');
-  bot.reply(message, 'Who is in [MAJOR]?');
-  bot.reply(message, 'Who is from [COUNTY/STATE/ZIP CODE]?');
+  bot.reply(message, 'Who is in [MAJOR] from [COUNTY/STATE/ZIP/CITY]?');
   bot.reply(message, 'Tell me about [PERSON].');
   bot.reply(message, 'What\'s trending?');
   bot.reply(message, 'Find [PERSON] on Twitter.');
@@ -166,8 +193,17 @@ controller.hears(['Where\'s (.*)?'],'direct_message,direct_mention,mention',func
       if (tag.charAt(0) === '@') {
         bot.reply(message, 'Searching Twitter for *' + tag + '*...');
         var handle = tag.substring(1);
+        var exec = require('child_process').exec;
+        var child = exec('java -jar Scraper.jar -loc ' + '"' + handle + '"', function(error, stdout, stderr) {
+          //bot.reply(message, 'Done!');
+          bot.reply(message, stdout);
+          if (error !== null) {
+            console.log('exec error: ' + error);
+            bot.reply(message, 'ERROR: ' + error);
+          }
+        });
       } else {
-        bot.reply(message, 'Sorry, "' + tag + '" is not a valid hashtag.');
+        bot.reply(message, 'Sorry, "' + tag + '" is not a valid Twitter handle.');
       }
     }
 
@@ -182,6 +218,15 @@ controller.hears(['What\'s up with (.*)?'],'direct_message,direct_mention,mentio
       if (tag.charAt(0) === '#') {
         bot.reply(message, 'Searching for the *' + tag + '* hashtag on Twitter...');
         var tagContent = tag.substring(1);
+        var exec = require('child_process').exec;
+        var child = exec('java -jar Scraper.jar -hash ' + '"' + tagContent + '"', function(error, stdout, stderr) {
+          //bot.reply(message, 'Done!');
+          bot.reply(message, stdout);
+          if (error !== null) {
+            console.log('exec error: ' + error);
+            bot.reply(message, 'ERROR: ' + error);
+          }
+        });
       } else {
         bot.reply(message, 'Sorry, "' + tag + '" is not a valid hashtag.');
       }
