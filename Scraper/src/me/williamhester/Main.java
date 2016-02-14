@@ -14,6 +14,6 @@ public class Main {
     public static void main(String[] args) {
         CourseCodes.setup();
         DeanList.read();
-        PeopleFinder.getPerson();
+        //PeopleFinder.getPerson();
     }
 }

@@ -1,6 +1,6 @@
 package me.williamhester.network;
 
-import me.williamhester.model.Person;
+import me.williamhester.model.AuburnPerson;
 import okhttp3.*;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -16,9 +16,11 @@ public class DeanList {
 
     public static void read() {
 
-        ArrayList<String> people = new ArrayList<>();
+        ArrayList<AuburnPerson> people = new ArrayList<>();
 
-        for (int i = 1; i <= 355; i++) {
+        int NUM_PAGES = 355;
+
+        for (int i = 1; i <= 5; i++) {
 
             //jSystem.out.println("READING " + i + "!");
             Request request = new Request.Builder()
@@ -35,34 +37,18 @@ public class DeanList {
 
 
                 for (Element row : table) {
-                    String s = "";
                     Elements entries = row.select("td");
                     int idx = 0;
+                    String[] rowData = new String[12];
                     for (Element entry : entries) {
-                        switch (idx) {
-                            case 0:
-                            case 1:
-                            case 2:
-                            case 3:
-                            case 8:
-                            case 9:
-                            case 10:
-                            case 11:
-                                s += entry.text() + "\t";
-                                break;
-                            case 5:
-                                s += CourseCodes.getDescription(entry.text()) + " ";
-                                break;
-
-                        }
-                       // s += entry.text() + " ";
+                        rowData[idx] = entry.text();
                         idx++;
                     }
-                    people.add(s);
+                    people.add(new AuburnPerson(rowData));
                 }
 
-                for (String s : people) {
-                    System.out.println(s);
+                for (AuburnPerson p : people) {
+                    System.out.println(p.getSummary());
                 }
             } catch (Exception e) {
                 e.printStackTrace();

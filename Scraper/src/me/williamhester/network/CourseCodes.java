@@ -14,9 +14,11 @@ import java.util.HashMap;
 public class CourseCodes {
 
     private static HashMap<String, String> courseCodes;
+    private static HashMap<String, String> courseNames;
 
     public static void setup() {
         courseCodes = new HashMap<>();
+        courseNames = new HashMap<>();
         Request request = new Request.Builder()
                 .url("https://web.auburn.edu/ir/dictionary/majorcodes.aspx").build();
 
@@ -41,6 +43,7 @@ public class CourseCodes {
                     idx++;
                 }
                 courseCodes.put(code, desc);
+                courseNames.put(desc, code);
          //       System.out.println(code + " -> " + desc);
             }
 
@@ -54,6 +57,14 @@ public class CourseCodes {
             return courseCodes.get(code);
         } else {
             return "No Description";
+        }
+    }
+
+    public static String getCode(String description) {
+        if (courseNames.containsKey(description)) {
+            return courseNames.get(description);
+        } else {
+            return "No Code";
         }
     }
 }
