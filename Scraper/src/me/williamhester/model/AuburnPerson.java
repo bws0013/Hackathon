@@ -2,6 +2,11 @@ package me.williamhester.model;
 
 import me.williamhester.network.CourseCodes;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Scanner;
+
 /**
  * Created by william on 2/13/16.
  */
@@ -12,6 +17,8 @@ public class AuburnPerson {
     private String mailingAddress;
     private String phone;
     private String email;
+    private String name;
+    private String organizations;
 
     // Dean's List Fields
     private String lastName;
@@ -50,6 +57,22 @@ public class AuburnPerson {
 
         id = makeId(firstName, lastName);
         majorDesc = CourseCodes.getDescription(major);
+    }
+
+    public AuburnPerson(ResultSet set) throws SQLException {
+        id = set.getString(1);
+        name = set.getString(2);
+        phone = set.getString(3);
+        email = set.getString(4);
+        mailingAddress = set.getString(5);
+        city = set.getString(6);
+        state = set.getString(7);
+        county = set.getString(8);
+        zipCode = set.getString(9);
+        major = set.getString(10);
+        level = set.getString(11);
+        degree = set.getString(12);
+        organizations = set.getString(13);
     }
 
     public static String makeId(String firstName, String lastName) {
@@ -229,12 +252,104 @@ public class AuburnPerson {
         this.majorDesc = majorDesc;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    private String getGradString() {
+        switch (level) {
+            case "UG":
+            case "U2":
+                return "an undergraduate";
+            case "GR":
+                return "a graduate";
+        }
+        return "an undergraduate";
+    }
+
+    private String getDegreeString() {
+        if (degree.startsWith("B")) {
+            return "Bachelor's";
+        }
+        if (degree.startsWith("M")) {
+            return "Master's";
+        }
+        return "Bachelor's";
+    }
+
+    private String getOrganizationsString() {
+        Scanner s = new Scanner(organizations).useDelimiter(",");
+        StringBuilder sb = new StringBuilder();
+        ArrayList<String> strings = new ArrayList<>();
+        while (s.hasNext()) {
+            strings.add(Organizations.getOrg(s.next()));
+        }
+        for (int i = 0; i < strings.size() - 2; i++) {
+            sb.append(strings.get(i)).append(", ");
+        }
+        if (strings.size() > 1) {
+            sb.append(strings.get(strings.size() - 2)).append(" and ");
+        }
+        return sb.append(strings.get(strings.size() - 1)).toString();
+    }
+
     @Override
     public String toString() {
-        return "Role: " + role + "\n" +
-                "Curriculum: " + curriculum + "\n" +
-                "MailingAddress: " + mailingAddress + "\n" +
-                "Phone: " + phone + "\n" +
-                "Email: " + email + "\n";
+        StringBuilder sb = new StringBuilder();
+        sb.append(name);
+        boolean first = true;
+        if (phone != null) {
+            sb.append("'s phone number is ").append(phone).append(". ");
+            first = false;
+        }
+        if (email != null) {
+            if (first) {
+                sb.append("'s ");
+            } else {
+                sb.append("Their ");
+            }
+            first = false;
+            sb.append("email address is ").append(email).append(". ");
+        }
+        if (mailingAddress != null) {
+            if (first) {
+                sb.append("'s ");
+            } else {
+                sb.append("Their ");
+            }
+            first = false;
+            sb.append("mailing address address is ").append(mailingAddress).append(". ");
+        }
+        if (city != null) {
+            if (first) {
+                sb.append(" ");
+            } else {
+                sb.append(name.substring(0, name.indexOf(' '))).append(" ");
+            }
+            first = false;
+            sb.append("is from ").append(city).append(", ").append(state).append(" in ").append(county)
+                    .append(" County, ").append(zipCode).append(". ");
+        }
+        if (major != null) {
+            if (first) {
+                sb.append(" ");
+            } else {
+                sb.append(name.substring(0, name.indexOf(' '))).append(" ");
+            }
+            first = false;
+            sb.append("is currently enrolled as ").append(getGradString())
+                    .append(" and is pursuing a ").append(getDegreeString()).append(" Degree")
+                    .append(" in ").append(CourseCodes.getDescription(major))
+                    .append(". ");
+        }
+        if (organizations != null) {
+            if (first) {
+                sb.append(" ");
+            } else {
+                sb.append(name.substring(0, name.indexOf(' '))).append(" ");
+            }
+            sb.append("is involved in ").append(getOrganizationsString()).append(".");
+        }
+        return sb.toString().trim();
     }
 }

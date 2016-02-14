@@ -1,5 +1,6 @@
 package me.williamhester;
 
+import me.williamhester.model.AuburnPerson;
 import me.williamhester.network.TwitterApi;
 import twitter4j.auth.AccessToken;
 import me.williamhester.network.CourseCodes;
@@ -7,11 +8,17 @@ import me.williamhester.network.CourseCodes;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
 
 public class Main {
+
+    private static String name;
 
     private static void twitterTest2() {
         ArrayList<String> user = new ArrayList<>(TwitterApi.getUser("John Harrison"));
@@ -57,11 +64,39 @@ public class Main {
         //store accessToken.getTokenSecret()
     }
 
-    public static void main(String[] args) throws IOException {
-        CourseCodes.setup();
-       /*// DeanList.read();*/
-        //TwitterApi.setAccount();
-       // twitterTest7();
-        //PeopleFinder.getPerson();
+    private static String getName() {
+        return AuburnPerson.makeId(name.toUpperCase().replace("'", "^"), name.toUpperCase().replace("'", "^")).replace("_", "");
+    }
+
+    public static void main(String[] args) throws Exception {
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+        } catch (Exception e) {
+            e.printStackTrace();
+            return;
+        }
+
+        name = "Mitchell Price";
+
+        Connection conn;
+        String url = "jdbc:mysql://127.0.0.1:3306/hackathon";
+        String user = "root";
+        try {
+            conn = DriverManager.getConnection(url, user, "");
+        } catch (Exception e) {
+            e.printStackTrace();
+            return;
+        }
+
+        if (conn != null) {
+            PreparedStatement statement = conn.prepareStatement("SELECT * FROM people WHERE id='" + getName() + "';");
+            ResultSet set = statement.executeQuery();
+            if (set.next()) {
+                System.out.println(new AuburnPerson(set));
+            } else {
+                System.out.println("Could not find anyone.");
+            }
+            statement.close();
+        }
     }
 }

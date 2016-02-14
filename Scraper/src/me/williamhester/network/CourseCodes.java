@@ -76,6 +76,7 @@ public class CourseCodes {
     }
 
     public static String getDescription(String code) {
+        setup();
         if (courseCodes.containsKey(code)) {
             return courseCodes.get(code);
         } else {
