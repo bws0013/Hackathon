@@ -1,0 +1,383 @@
+ 
+AGCO Agricultural Communications
+AGEC Agricultural Business & Econ
+AGRN Plant Sciences-Agronomy
+ANEQ Animal Sciences-Equine
+ANMF Animal Sciences-Muscle-Foods
+ANPM Animal Sci-Production/Mngt
+ANPV Animal Sciences-Pre-Vet
+ANSC Animal Sciences
+APEC Applied Economics
+AYPR Agronomy and Soils - Production
+AYSC Agronomy and Soils - Science
+AYSW Agronomy and Soils - Soil, Water and Land Use
+AYTU Agronomy and Soils - Turfgrass
+ENTM Plant Sciences-Entomology
+ENVI Environmental Science
+FDSC Food Sci Option-Poultry Sci
+FDSG Food Sci Opt Grad-Poultry Sci
+FIPV Fish & Allied Aquacultures - Pre-Vet
+FISH Fish & Allied Aquacultures
+HRTB Horticulture Undergraduate
+HRTD Horticulture Doctoral Lvl
+HRTG Public Horticulture *
+HRTM Horticulture Master's Lvl
+PLPH Plant Sciences-Plant Pathology
+PLTD Poultry Science-Doctoral
+PLTM Poultry Science-Masters
+POPP Poultry Science-Production
+POPR Poultry Sci-Process & Products
+POPV Poultry Science-Pre-Vet
+SWES Soil, Water, and Environmental Science
+TURF Turfgrass Management
+UNAG Undeclared-Agriculture
+ARCH Architecture
+ARIA Interior Architecture
+BSCC Building Science Construction
+BSCI Building Science
+BSCM Construction Management*
+CPLN Community Planning
+ENVD Environmental Design
+ETCM Executive Technical Construction Management *
+GDES Graphic Design
+INDC Integrated Design and Construction
+INDD Industrial Design
+IPCM Integrated Processes Contruction Management *
+LAND Landscape Architecture
+PARC Pre-Architecture
+PBSC Pre-Building Science
+PGDE Pre-Graphic Design, Arch
+PIND Pre-Industrial Design
+PLND Pre-Environ Design - Landscape
+UNAR Undeclared-Architecture
+ACCT Accountancy
+AVMF Professional Flight
+AVMG Aviation Management
+BFIN Business, Finance Option
+BISM Business, Information Systems Opt
+BMGT Business, Management Opt
+BMKT Business, Marketing Opt
+BSAD Business Administration
+BUAL Business Analytics
+BUSA Business Administration-GR
+BUSC Business Administration-Custom
+BUSI Business
+BUSP Business Admin-Physician
+BUSX Business Admin (Executive)
+ENFB Entrepreneurship & Family Bus
+FINC Finance
+FINM Business Admin-Finance
+HRMN Bus Admin-Human Res Mngt
+HRMM Bus Admin-Human Res Mngt - Graduate
+IBUS International Business
+ISMN Information Systems Management
+MIS Management Info Systems
+MKTG Marketing
+MNGT Management
+PREB Pre-Business
+SCMN Supply Chain Management
+UNBU Undeclared-Business
+ADED Adult Ed*
+ADEG Adult Ed Graduate
+ADEL Adult Education and English Language Teaching*
+ADES Adult Ed Specialist
+AESG Admin of Elem & Secondary Ed
+AESS Admin Elem & Sec Ed Specialist
+AGLG Agricultural Leadership
+AHEG Admin of Higher Education
+ASCG Admin of Supervis & Curriculum
+CAGB Agriscience Ed Undergraduate
+CAGG Agriscience Ed Graduate
+CAGS Agriscience Ed Specialist
+CBIG Biology Ed Graduate
+CBIS Biology Ed Specialist
+CBMB Bus & Mktg Ed Undergraduate
+CBMG Business & Mktg Ed Graduate
+CBMS Business & Mktg Ed Specialist
+CCAG Community Agency Counseling
+CCHB Chemistry Ed Undergraduate
+CCHG Chemistry Ed Graduate
+CCHS Chemistry Ed Specialist
+CECB Early Child Ed Undergraduate
+CECG Early Child Ed Graduate
+CECS Early Child Ed Specialist
+CEDG Counselor Education
+CEEB Elementary Ed Undergraduate
+CEEG Elementary Ed Graduate
+CEES Elementary Ed Specialist
+CEGB Eng Lang Arts Ed Undergraduate
+CEGG Eng Lang Arts Ed Graduate
+CEGS Eng Lang Arts Ed Specialist
+CESG English for Spkrs Other Lang
+CFRB French Ed Undergraduate
+CFRG French Ed Graduate
+CFRS French Ed Specialist
+CGRB German Education
+CGTC College/University Teaching *
+CHYG History Education
+CHYS History Ed Specialist
+CMAB Mathematics Ed Undergraduate
+CMAG Mathematics Ed Graduate
+CMAS Mathematics Ed Specialist
+CMCB Music Ed Instru/Voc Undergrad
+CMHC Clinical Mental Health Counseling
+CMIG Music Ed Instrumental Graduate
+CMIS Music Ed Instru Specialist
+CMUS Community Music *
+CMVG Music Ed Vocal Graduate
+CMVS Music Ed Vocal Specialist
+CNRG Reading Education
+COPG Counseling Psychology
+CPHB Physics Ed Undergraduate
+CPHG Physics Ed Graduate
+CPHS Physics Ed Specialist
+CPSG School Counseling
+CSIB General Science Ed Undergrad
+CSIG General Science Ed Graduate
+CSIS General Sci Ed Specialist
+CSNB Spanish Ed Undergraduate
+CSNG Spanish Ed Graduate
+CSNS Spanish Ed Specialist
+CSTB Gen Social Sci Ed Undergrad
+CSTG Gen Social Sci Ed Graduate
+CSTS Gen Social Sci Ed Specialist
+CTCG Career & Technical Education
+EDLR Educational Leadership *
+EEDU Extension Educator *
+EPGG Educational Psychology
+FCPB Fitness Conditioning and Performance
+HESB Exercise Science Undergraduate
+HESG Exercise Science Graduate
+HPNB Physical Ed/Teach Ed Undergrad
+HPNG Physical Ed/Teach Ed Graduate
+IADV Intervention for Students with Autism and Development Disabilities*
+ITDE Instructional Technology for Distance Ed*
+KNSG Kinesiology
+MSEG Library Media
+MSES Library Media Ed Speclialist
+MVSA Movement and Skills Analysis*
+PAHB Physical Activity and Health
+PAHG Physical Activity and Health Graduate
+PCAG Pre-Agriscience Education
+PCBM Pre-Business & Mktg Education
+PCCH Pre-Chemistry Education
+PCEC Pre-Early Childhood Educ
+PCEE Pre-Elementary Education
+PCEG Pre-English Lang Arts Educ
+PCFR Pre-French Education
+PCGR Pre-German Education
+PCMA Pre-Mathematics Education
+PCMC Pre-Music Ed Comb Instru/Vocal
+PCPH Pre-Physics Education
+PCSI Pre-Science Education, General
+PCSN Pre-Spanish Education
+PCST Pre-Social Sci General Educ
+PGEV Program Evaluation*
+PHES Pre-Exercise Science
+PHPN Pre-Physical Education
+PRSC Pre-Special Ed Collab Teacher
+PRSD Pre-Special Ed Early Childhood
+RMGT Rehabilitation Leadership Mngt *
+RSCB Collab Teach Sp Ed Undergrad
+RSCG Collab Teach Sp Ed Graduate
+RSDB Early Child Special Education
+RSDG Early Childhood Special Educ
+RSRB Rehab Services Undergraduate
+RSRG Rehab Services Graduate
+RSSG Rehabilitation and Special Ed
+TCED Technology Educator*
+TESF Teaching Eng Sec/Foreign Lang *
+TSPC Transition Specialist *
+UNED Undeclared-Education
+AERO Aerospace Engineering
+AMFS Automotive Mfg Systems *
+BSEN Biosystems Engineering
+CHEN Chemical Engineering
+CIVL Civil Engineering
+COMP Computer Sci & Software Engr
+CSCI Computer Science
+ECEN Ecological Engineering Option
+ECPE Elec Engineering-Computer
+ELEC Electrical Engineering
+FOEN Forest Engineering Option
+FREN Fiber Option
+INSY Industrial & Systems Eng
+MATL Materials Engineering
+MECH Mechanical Engineering
+OSFE Occupational Safety Ergonomics *
+PAE Pre-Aerospace Engineering
+PBSE Pre-Biosystems Engineering
+PCE Pre-Civil Engineering
+PCHE Pre-Chemical Engineering
+PCPS Pre-Computer Science
+PECE Pre-Elec & Comp Eng (Hardware)
+PECN Pre-Ecological-Biosystems Eng
+PEE Pre-Electrical Engineering
+PFEN Polymer & Fiber Engineering
+PFOE Pre-Forest-Biosystems Eng
+PIE Pre-Industrial Engineering
+PLEN Polymer & Fiber Eng
+PME Pre-Mechanical Engineering
+PMTL Pre-Materials Engineering
+PN Pre-Engineering
+PPFN Pre-Polymer & Fiber Eng
+PSWE Pre-Software Engineering
+PWRE Pre-Wire Eng (Hardware option)
+PWRS Pre-Wire Eng (Software option)
+SWEN Software Engineering
+UNEN Undeclared-Engineering
+WIRE Wireless Eng-Hardware Option
+WIRS Wireless Eng-Software Option
+ECFY Applied Econ
+FORB Forestry
+FORG Forestry, Graduate
+FOWG Natural Resources
+NATR Natural Resources Management
+PFOR Pre-Forestry
+TRNS Transient
+UNFW Undeclared Forestry & Wildlife
+WLDE Wildlife Ecology & Management
+WLDG Wildlife-Graduate
+WLPV Wildlife Sciences Pre-Vet
+UNGS Undeclared-Graduate School
+APDP Apparel Mchd-Prod Des and Mngt
+APME Apparel Mchd-Apparels
+BRWS Brewing Sciences *
+CADS Consumer and Design Sciences
+GHSR Global Hospitality and Retail *
+GSHS Global Studies in Human Sciences
+HDFE Hum Dev Fam Stds-Early Chld Ed
+HDFS Human Dev & Family Studies
+HDFT Human Dev/Family Marriage and Family Therapy
+HDFX Human Development Pre-Early Child Education
+HRMT Hotel & Restaurant Management
+INDS Interior Design
+INDX Pre-Interior Desing
+NHRM Nutrition - Hotel and Restaurant Mngt Option
+NSPM Nutrition-Nutrition Science
+NTDI Nutrition - Dietetics
+NTDX Pre-Nutrition
+NTRI Nutrition
+NTWE Nutrition, Wellness Option
+UNHS Undeclared-Human Sciences
+CMBL Cell & Molecular Biology
+RDEV Real Estate Development
+RSOC Rural Sociology
+SOCY Sociology
+TRNS Transient
+UNIN Undeclared-Interdepartmental
+AECL Applied Economics Liberal Arts
+ANTH Anthropology
+ARCS Archival Studies*
+ARTF Fine Arts
+ARTH Art History
+ATLA Art, Lib Arts
+AUDY Audiology
+CABS Psych Cognitive and Behavioral
+CMDS Communication Disorders
+COMM Communication
+COMS Communication Studies*
+CPSY Clinical Psychology
+EADM Elections Administration *
+ECNL Economics, Liberal Arts
+EGLC English-Creative Writing
+EGLL English-Literature
+EGLW Professional and Public Writing
+ENGL English
+ENGT English Tech/Prof Writing
+FLFR French
+FLFT International Trade - French
+FLGR German
+FLGT German-International Trade
+FLSP Spanish
+FLST Spanish-International Trade
+HADM Health Services Administration
+HIST History
+JRNL Journalism
+MDIA Media Studies
+MDIV Media Studies, Visual Media Opt
+MSLA Music, Liberal Arts
+MULA Music, Lib Arts
+NPCG Nonprofit Organizations and Community Governance*
+PATR Pre-Anthropology
+PCMD Pre Communication Disorders
+PCOM Pre-Communication
+PECO Pre-Economics, Lib Arts
+PEGL Pre-English
+PFGT Pre-German Intl Trade
+PFLF Pre-French
+PFLG Pre-German
+PFLS Pre-Spanish
+PFLT Pre-French Intl Trade
+PFST Pre-Spanish Intl Trade
+PHDM Pre-Health Svc Admin
+PHIL Philosophy
+PHST Pre-History
+PJRL Pre-Journalism
+PLAU Pre-Lib Arts Undeclared
+PMDA Pre-Media Studies
+PMDV Pre-Media Studies, Visual Media Opt
+PMSC Pre-Music, Liberal Arts
+POLI Political Science
+PPCR Pre-Public Relations
+PPHL Pre-Philosophy
+PPOL Pre-Political Sci
+PPSY Pre-Psychology
+PPUA Pre-Pub Admin
+PRCM Public Relations Communication
+PRLG Pre-Relg Studies, Phil
+PSOC Pre-Sociology
+PSWK Pre-Social Work
+PSYC Psychology
+PSYO Psychology Org/Industrial
+PUBA Public Administration
+PUBH Public History *
+PUBP Public Admin. & Public Policy
+SOCY Sociology
+SOWO Social Work
+TCOM Technical Communication *
+THEA Theatre
+THLA Theatre - Liberal Arts
+UNLA Undeclared-Liberal Arts
+NEDC Nursing-Nursing Education
+NUPC Nurse Prim Care Practitioner
+NURS Nursing Science
+PNUR Pre-Nursing Science
+UNNU Undeclared-Nursing
+IDSC Interdisciplinary University Studies
+MDCH Medicinal Chemistry*
+PHAR Pharmacy
+PYCE Pharmaceutical Sciences, Pharmaceutics Option
+PYHO Pharmaceutical Sciences, Health Outcomes Research and Policy Option
+PYPH Pharmaceutical Sciences, Pharmacology Option
+ACTU Applied Math-Actuarial Sci
+ADST Applied Math-Disc and Stat Sci
+AMTH Applied Mathematics
+BCHM Chemistry-Biochemistry
+BIOL Biological Sciences
+BMSC Biomedical Sciences
+BTNY Plant Sciences-Botany
+CHEM Chemistry
+CHMA Chemistry, BA
+CONS Organismal Bio, Conservation and Biodiversity Opt
+DISC Applied Math-Discrete
+DSTM Discrete & Statistical Science
+ECEB Organismal Bio, Ecology, Evolution, Behavior Opt
+ESYS Geology - Earth System Science Opt
+GEOG Geography
+GEOL Geology
+IBIO Organismal Bio, Integrative Biology
+LABT Lab Technology
+LBSC Laboratory Science
+MARB Marine Biology
+MATH Mathematics
+MCCM Microbial Bio (Cell/Molecular)
+MCMB Microbial Biology (Microbio)
+MEDT Medical Technology
+MLSC Medical Laboratory Science
+PHYS Physics
+UNSM Undeclared-Sciences & Math
+ZOOL Zoology
+EXPL Explore Your Major
+BMSV Biomedical Sciences (Vet Med)
+VMED Veterinary Medicine

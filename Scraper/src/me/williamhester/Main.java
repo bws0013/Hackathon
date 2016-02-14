@@ -2,6 +2,7 @@ package me.williamhester;
 
 import me.williamhester.network.TwitterApi;
 import twitter4j.auth.AccessToken;
+import me.williamhester.network.CourseCodes;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -57,10 +58,10 @@ public class Main {
     }
 
     public static void main(String[] args) throws IOException {
-        /*CourseCodes.setup();
-        DeanList.read();*/
-        TwitterApi.setAccount();
-        twitterTest7();
+        CourseCodes.setup();
+       /*// DeanList.read();*/
+        //TwitterApi.setAccount();
+       // twitterTest7();
         //PeopleFinder.getPerson();
     }
 }

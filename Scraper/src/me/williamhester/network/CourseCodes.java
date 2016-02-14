@@ -6,6 +6,9 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
+import java.util.Scanner;
+import java.io.File;
+import java.io.IOException;
 import java.util.HashMap;
 
 /**
@@ -17,6 +20,25 @@ public class CourseCodes {
     private static HashMap<String, String> courseNames;
 
     public static void setup() {
+        courseCodes = new HashMap<>();
+        courseNames = new HashMap<>();
+        try {
+            Scanner readFile = new Scanner(new File("Courses.txt"));
+            while (readFile.hasNext()) {
+                String line = readFile.nextLine();
+                int spIdx = line.indexOf(" ");
+                String code = line.substring(0, spIdx);
+                String desc = line.substring(spIdx + 1);
+                System.out.println(code + " " + desc);
+                courseCodes.put(code, desc);
+                courseCodes.put(desc, code);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void setup_online() {
         courseCodes = new HashMap<>();
         courseNames = new HashMap<>();
         Request request = new Request.Builder()
@@ -42,6 +64,7 @@ public class CourseCodes {
                     }
                     idx++;
                 }
+                System.out.println(code + " " + desc);
                 courseCodes.put(code, desc);
                 courseNames.put(desc, code);
          //       System.out.println(code + " -> " + desc);
