@@ -155,6 +155,23 @@ controller.hears(['help'], 'direct_message,direct_mention,mention',function(bot,
   bot.reply(message, 'Find [PERSON] on Twitter.');
   bot.reply(message, 'When is [PERSON]\'s birthday?');
   bot.reply(message, 'What\'s up with [HASHTAG]?');
+  bot.reply(message, 'Where\'s [TWITTERHANDLE]?');
+});
+
+controller.hears(['Where\'s (.*)?'],'direct_message,direct_mention,mention',function(bot, message) {
+    var matches = message.text.match(/Where\'s (.*)\?/i);
+    if (matches === null) {
+      bot.reply(message, 'Sorry, I don\'t understand you.');
+    } else {
+      var tag = matches[1];
+      if (tag.charAt(0) === '@') {
+        bot.reply(message, 'Searching Twitter for *' + tag + '*...');
+        var handle = tag.substring(1);
+      } else {
+        bot.reply(message, 'Sorry, "' + tag + '" is not a valid hashtag.');
+      }
+    }
+
 });
 
 controller.hears(['Whose email is (.*)?'],'direct_message,direct_mention,mention',function(bot, message) {
@@ -183,6 +200,7 @@ controller.hears(['What\'s up with (.*)?'],'direct_message,direct_mention,mentio
       var tag = matches[1];
       if (tag.charAt(0) === '#') {
         bot.reply(message, 'Searching for the *' + tag + '* hashtag on Twitter...');
+        var tagContent = tag.substring(1);
       } else {
         bot.reply(message, 'Sorry, "' + tag + '" is not a valid hashtag.');
       }

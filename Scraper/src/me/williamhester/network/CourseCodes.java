@@ -56,7 +56,7 @@ public class CourseCodes {
         if (courseCodes.containsKey(code)) {
             return courseCodes.get(code);
         } else {
-            return "No Description";
+            return code;
         }
     }
 
