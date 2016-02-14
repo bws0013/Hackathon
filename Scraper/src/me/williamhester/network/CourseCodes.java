@@ -29,7 +29,7 @@ public class CourseCodes {
                 int spIdx = line.indexOf(" ");
                 String code = line.substring(0, spIdx);
                 String desc = line.substring(spIdx + 1);
-                System.out.println(code + " " + desc);
+//                System.out.println(code + " " + desc);
                 courseCodes.put(code, desc);
                 courseCodes.put(desc, code);
             }
