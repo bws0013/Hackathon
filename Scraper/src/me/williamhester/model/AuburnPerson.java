@@ -5,11 +5,21 @@ package me.williamhester.model;
  */
 public class AuburnPerson {
 
+    private String name;
     private String role;
     private String curriculum;
     private String mailingAddress;
     private String phone;
     private String email;
+    private String department;
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 
     public String getRole() {
         return role;
@@ -51,12 +61,21 @@ public class AuburnPerson {
         this.email = email;
     }
 
+    public String getDepartment() {
+        return department;
+    }
+
+    public void setDepartment(String department) {
+        this.department = department;
+    }
+
     @Override
     public String toString() {
-        return "Role: " + role + "\n" +
-                "Curriculum: " + curriculum + "\n" +
-                "MailingAddress: " + mailingAddress + "\n" +
-                "Phone: " + phone + "\n" +
-                "Email: " + email + "\n";
+        return "{role:\"" + role + "\"," +
+                "name:\"" + name + "\"," +
+                "curriculum:\"" + curriculum + "\"," +
+                "mailingAddress:\"" + mailingAddress + "\"," +
+                "phone:\"" + phone + "\"," +
+                "email:\"" + email + "\"}";
     }
 }

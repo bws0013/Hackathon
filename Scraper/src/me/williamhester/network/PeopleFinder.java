@@ -43,44 +43,47 @@ public class PeopleFinder {
             }
             for (Person p : people) {
                 System.out.println(p.getName());
-                getPerson(p);
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    public static void getPerson(Person person) {
-        Request request = new Request.Builder()
-                .url(person.getUrl())
-                .header("Cookie", cookie)
-                .build();
+    public static AuburnPerson getPerson(String html) {
+        AuburnPerson p = new AuburnPerson();
         try {
-            Document doc = Jsoup.parse(NetworkSingleton.getOkHttpClient().newCall(request).execute().body().string());
-            System.out.print(doc);
+            Document doc = Jsoup.parse(html);
+            p.setName(doc.select(".panel-heading").first().select("h3").text());
+
             Elements table = doc.select("tbody").first().select("tr");
 
-            AuburnPerson p = new AuburnPerson();
             for (Element e : table) {
                 String[] s = e.text().split(":");
+                String data = s[1].trim();
                 switch (s[0]) {
+                    case "Roles":
                     case "Role":
-                        p.setRole(s[1]);
+                        p.setRole(data);
+                        break;
+                    case "Mailing Address":
+                        p.setMailingAddress(data);
                         break;
                     case "Department":
-                        p.setMailingAddress(s[1]);
+                        p.setDepartment(data);
                         break;
                     case "Phone":
-                        p.setPhone(s[1]);
+                        p.setPhone(data);
                         break;
                     case "Email":
-                        p.setEmail(s[1]);
+                        p.setEmail(data);
                         break;
                 }
             }
+            System.out.println(p);
         } catch (Exception e) {
             e.printStackTrace();
         }
+        return p;
     }
 
 }
